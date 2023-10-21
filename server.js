@@ -20,6 +20,6 @@ require('./routes/webhook_verify')(app);
 
 // warming up the engines !! setta !! go !!!.
 app.listen(app.get('port'), function() {
-  const url = 'http://localhost:' + app.set('port');
+  const url = 'https://facebook-bot-demo-production.up.railway.app/' + app.set('port');
   console.log('Application running on port: ', app.get('port'));
 });

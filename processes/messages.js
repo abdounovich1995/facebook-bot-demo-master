@@ -16,7 +16,7 @@ module.exports = function processMessage(event) {
 
             let options = {
                 method: 'POST',
-                url: 'https://mefit-preprod.herokuapp.com/api/getnutritionvalue',
+                url: 'https://facebook-bot-demo-production.up.railway.app/api/getnutritionvalue',
                 headers:
                 {
                     'cache-control': 'no-cache',
