@@ -1,24 +1,23 @@
 const request = require('request');
+const senderAction = require('../templates/senderAction');
+const sendMessage = require('../templates/sendMessage');
+const sendGenericTemplate = require('../templates/sendGenericTemplate');
 
-module.exports = function sendMessage(recipientId, message){
-    return new Promise(function(resolve, reject) {
-        request({
-            url: "https://graph.facebook.com/v2.6/me/messages",
-            qs: {
-                access_token: process.env.PAGE_ACCESS_TOKEN
-            },
-            method: "POST",
-            json: {
-                recipient: {id: recipientId},
-                message: message,
-            }
-        }, function(error, response, body) {
-            if (error) {
-                console.log("Error sending message: " + response.error);
-                reject(response.error);
+module.exports = function processMessage(event) {
+    if (!event.message.is_echo) {
+        const message = event.message;
+        const senderID = event.sender.id;
+        console.log("Received message from senderId: " + senderID);
+        console.log("Message is: " + JSON.stringify(message));
+        if (message.text) {
+            const userMessage = message.text.toLowerCase(); // Convert the message to lowercase for case-insensitive matching.
+            if (userMessage === "hello") {
+                // Send a "Hi" message in response to "Hello"
+                sendMessage(senderID, "Hi");
             } else {
-                resolve(body);
+                // Send an error message for other input
+                sendMessage(senderID, "I'm sorry, I don't understand that. Please try again.");
             }
-        });
-    })
+        }
+    }
 }
