@@ -10,10 +10,10 @@ module.exports = function processMessage(event) {
         console.log("Received message from senderId: " + senderID);
         console.log("Message is: " + JSON.stringify(message));
         if (message.text) {
-            // now we will take the text recieved and send it to an food tracking API.
-            if (message.text.toLowerCase() === "hi") {
-                // Send a simple "hi" message in response
-                sendMessage(senderID, "Hi");
+            const userMessage = message.text.toLowerCase();
+            if (userMessage === "hi") {
+                // Send "HIII" message in response to "hello"
+                sendMessage(senderID, "HIII");
             } else {
                 try {
                     // Simulate an exception
@@ -22,20 +22,7 @@ module.exports = function processMessage(event) {
                     console.error("An exception occurred:", error);
                     sendMessage(senderID, "An error occurred. Please try again later.");
                 }
-
-      
-             
-            
-
+            }
         }
-
-      
-
-
-
-
-
-
-
-    
-}}}
+    }
+};
