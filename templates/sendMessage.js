@@ -1,6 +1,7 @@
-module.exports = function sendMessage(recipientId, message) {
+const request = require('request');
+
+module.exports = function sendMessage(recipientId, message){
     return new Promise(function(resolve, reject) {
-        console.log("Sending message to recipient: " + recipientId);
         request({
             url: "https://graph.facebook.com/v2.6/me/messages",
             qs: {
@@ -8,17 +9,16 @@ module.exports = function sendMessage(recipientId, message) {
             },
             method: "POST",
             json: {
-                recipient: { id: recipientId },
+                recipient: {id: recipientId},
                 message: message,
             }
-        }, function (error, response, body) {
+        }, function(error, response, body) {
             if (error) {
-                console.log("Error sending message: " + error);
-                reject(error);
+                console.log("Error sending message: " + response.error);
+                reject(response.error);
             } else {
-                console.log("Message sent successfully.");
                 resolve(body);
             }
         });
-    });
+    })
 }
