@@ -24,10 +24,7 @@ module.exports = function processMessage(event) {
                 }
 
       
-                if (error) throw new Error(error);
-                senderAction(senderID);
-                // after the response is recieved we will send the details in a Generic template
-                sendGenericTemplate(senderID, body);
+             
             
 
         }
