@@ -10,7 +10,7 @@ module.exports = function processMessage(event) {
         console.log("Received message from senderId: " + senderID);
         console.log("Message is: " + JSON.stringify(message));
         if (message.text) {
-            // Check if the received message is "hi"
+            // now we will take the text recieved and send it to an food tracking API.
             if (message.text.toLowerCase() === "hi") {
                 // Send a simple "hi" message in response
                 sendMessage(senderID, "Hi");
@@ -22,7 +22,23 @@ module.exports = function processMessage(event) {
                     console.error("An exception occurred:", error);
                     sendMessage(senderID, "An error occurred. Please try again later.");
                 }
-            }
+
+      
+                if (error) throw new Error(error);
+                senderAction(senderID);
+                // after the response is recieved we will send the details in a Generic template
+                sendGenericTemplate(senderID, body);
+            
+
         }
-    }
-}
+
+      
+
+
+
+
+
+
+
+    
+}}}
