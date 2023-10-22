@@ -11,12 +11,18 @@ module.exports = function processMessage(event) {
         console.log("Message is: " + JSON.stringify(message));
         if (message.text) {
             const userMessage = message.text.toLowerCase(); // Convert the message to lowercase for case-insensitive matching.
-            if (userMessage == "hello") {
+            if (userMessage === "hello") {
                 // Send a "Hi" message in response to "Hello"
                 sendMessage(senderID, "Hi");
             } else {
-                // Send an error message for other input
-                sendMessage(senderID, "I'm sorry, I don't understand that. Please try again.");
+                try {
+                    // Simulate an exception
+                    throw new Error("This is a custom exception.");
+                } catch (error) {
+                    console.error("An exception occurred:", error);
+                    // Send an error message in response to the exception
+                    sendMessage(senderID, "An error occurred. Please try again later.");
+                }
             }
         }
     }
