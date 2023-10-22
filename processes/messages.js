@@ -15,8 +15,13 @@ module.exports = function processMessage(event) {
                 // Send a simple "hi" message in response
                 sendMessage(senderID, "Hi");
             } else {
-                // Send a message indicating that the bot doesn't understand
-                sendMessage(senderID, "I'm sorry, I don't understand your message.");
+                try {
+                    // Simulate an exception
+                    throw new Error("This is a custom exception.");
+                } catch (error) {
+                    console.error("An exception occurred:", error);
+                    sendMessage(senderID, "An error occurred. Please try again later.");
+                }
             }
         }
     }
