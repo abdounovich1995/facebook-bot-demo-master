@@ -19,6 +19,6 @@ module.exports = function processMessage(event) {
         sendMessage(senderID, "Hi");
     } else {
         // Send an error message for other input
-        sendMessage(senderID, "I'm sorry, I don't understand that. Please try again.");
+        sendMessage(senderID, "I'm sorry, I don't under   stand that. Please try again.");
     }
 }
