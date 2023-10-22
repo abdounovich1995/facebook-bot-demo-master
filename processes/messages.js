@@ -11,7 +11,7 @@ module.exports = function processMessage(event) {
         console.log("Message is: " + JSON.stringify(message));
         if (message.text) {
             const userMessage = message.text.toLowerCase();
-            if (userMessage === "hi") {
+            if (userMessage === "hello") { // Change "hi" to "hello"
                 // Send "HIII" message in response to "hello"
                 sendMessage(senderID, "HIII");
             } else {
